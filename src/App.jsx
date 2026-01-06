@@ -12,7 +12,7 @@ export default function App() {
   const letterText = `A Month with You 🤍🐶
 
 สุขสันต์วันครบรอบคับ มีคนจำได้ไหมน้าา
-1 เดือนแยะเลย
+1 เดือนแยะ
 
 เค้ามีไรจะสารภาพ
 เค้าไม่ชอบหัวเกรียน 55555
@@ -154,7 +154,89 @@ export default function App() {
       )}
 
       {/* หน้า 5 จะมาในโค้ดก้อนถัดไป */}
+{/* หน้า 5 : สวนลูกหมา ลูกแมว */}
+{page === 5 && (
+  <div style={styles.garden}>
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 360 640"
+      style={{ position: "absolute", bottom: 0 }}
+    >
+      {/* ท้องฟ้า */}
+      <rect width="360" height="300" fill="#ffe6eb" />
 
+      {/* ภูเขา */}
+      <path
+        d="M0 300 Q90 200 180 300 T360 300 V640 H0 Z"
+        fill="#e8cfcf"
+      />
+
+      {/* ทุ่งหญ้า */}
+      <rect y="300" width="360" height="340" fill="#dfeee3" />
+
+      {/* ดอกไอริสม่วง */}
+      {[40, 120, 200, 280].map((x, i) => (
+        <g key={`iris-${i}`} transform={`translate(${x},420)`}>
+          <circle r="6" fill="#b19cd9" />
+          <rect y="6" width="2" height="18" x="-1" fill="#7fa68a" />
+        </g>
+      ))}
+
+      {/* ดอกลิลลี่ขาว */}
+      {[80, 160, 240, 320].map((x, i) => (
+        <g key={`lily-${i}`} transform={`translate(${x},450)`}>
+          <circle r="6" fill="#ffffff" />
+          <rect y="6" width="2" height="18" x="-1" fill="#7fa68a" />
+        </g>
+      ))}
+    </svg>
+
+    {/* ลูกหมา */}
+    <div style={styles.dog}>
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <circle cx="25" cy="28" r="14" fill="#f5cfa0" />
+        <circle cx="18" cy="20" r="5" fill="#f5cfa0" />
+        <circle cx="32" cy="20" r="5" fill="#f5cfa0" />
+        <rect x="15" y="34" width="20" height="4" rx="2" fill="#5a2d2d" />
+        <text x="25" y="48" fontSize="8" textAnchor="middle" fill="#5a2d2d">
+          PN
+        </text>
+      </svg>
+    </div>
+
+    {/* ลูกแมว */}
+    <div style={styles.cat}>
+      <svg width="45" height="45" viewBox="0 0 50 50">
+        <circle cx="25" cy="28" r="13" fill="#d9d9d9" />
+        <polygon points="15,15 20,5 25,15" fill="#d9d9d9" />
+        <polygon points="35,15 30,5 25,15" fill="#d9d9d9" />
+        <rect x="16" y="34" width="18" height="4" rx="2" fill="#f4a6a6" />
+        <text x="25" y="48" fontSize="8" textAnchor="middle" fill="#f4a6a6">
+          JN
+        </text>
+      </svg>
+    </div>
+
+    {/* หัวใจ */}
+    <div style={styles.heart}>💗</div>
+
+    {/* ข้อความจบ */}
+    <div style={styles.finalText}>
+      Our First Month, Many More to Come 🤍
+    </div>
+
+    {/* ปุ่ม */}
+    <div style={styles.finalButtons}>
+      <button style={styles.button} onClick={() => setPage(4)}>
+        กลับไปอ่านใหม่
+      </button>
+      <button style={styles.button} onClick={() => setPage(3)}>
+        ฟังเพลงอีกครั้ง
+      </button>
+    </div>
+  </div>
+)}
       <style>
         {`
         @keyframes shake {
@@ -247,3 +329,62 @@ const styles = {
     fontSize: 14,
   },
 };
+@keyframes dogRun {
+  0% { transform: translateX(380px) translateY(0); }
+  40% { transform: translateX(200px) translateY(-20px); }
+  70% { transform: translateX(160px) translateY(0); }
+  100% { transform: translateX(160px) translateY(0); }
+}
+
+@keyframes catRun {
+  0% { transform: translateX(-80px) translateY(0); }
+  40% { transform: translateX(120px) translateY(-20px); }
+  70% { transform: translateX(180px) translateY(0); }
+  100% { transform: translateX(180px) translateY(0); }
+}
+
+@keyframes heartGrow {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 1; }
+}
+garden: {
+  position: "relative",
+  width: "100%",
+  height: "100vh",
+  background: "#ffe4e1",
+  overflow: "hidden",
+},
+dog: {
+  position: "absolute",
+  bottom: 140,
+  animation: "dogRun 4s ease-out forwards",
+},
+cat: {
+  position: "absolute",
+  bottom: 140,
+  animation: "catRun 4s ease-out forwards",
+},
+heart: {
+  position: "absolute",
+  top: "45%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  fontSize: 48,
+  animation: "heartGrow 2s ease forwards",
+},
+finalText: {
+  position: "absolute",
+  top: "20%",
+  width: "100%",
+  textAlign: "center",
+  color: "white",
+  fontSize: 16,
+},
+finalButtons: {
+  position: "absolute",
+  bottom: 40,
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  gap: 10,
+},
